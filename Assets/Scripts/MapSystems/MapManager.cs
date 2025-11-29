@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
-{
+{   
     public static MapManager Instance;
 
     [Header("Cài đặt Hệ thống")]
