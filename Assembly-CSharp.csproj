@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C366154B-AD75-19B6-AA3D-92AA9D5AB1DF}</ProjectGuid>
+    <ProjectGuid>{EABD3674-C11A-A7D2-F2A9-562A540B0759}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -55,11 +55,12 @@
     <UnityVersion>6000.2.14f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.14f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.14f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.14f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
-    <Analyzer Include="C:\Users\Administrator\BATHOTH\Library\PackageCache\com.unity.ai.inference@587873fd5e1b\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
-    <Analyzer Include="C:\Users\Administrator\BATHOTH\Library\PackageCache\com.unity.dt.app-ui@7b87c8225c06\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
+    <Analyzer Include="C:\Users\kawai\source\repos\Final-Project\Library\PackageCache\com.unity.ai.inference@587873fd5e1b\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
+    <Analyzer Include="C:\Users\kawai\source\repos\Final-Project\Library\PackageCache\com.unity.dt.app-ui@7b87c8225c06\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\Scripts\MapSystems\DoorConnectionVisualizer.cs" />
     <Compile Include="Assets\Scripts\MapSystems\RoomTileSO.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets\Scripts\UI\EndTurnButton.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Assets\Scripts\GameInitializer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
+    <Compile Include="Assets\Scripts\CharacterSystems\Player.cs" />
     <Compile Include="Assets\Scripts\Mechanics\TurnManager.cs" />
     <Compile Include="Assets\Scripts\MapSystems\TilePlacementHelper.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
@@ -646,16 +649,16 @@
       <HintPath>Library\PackageCache\com.unity.visualscripting@b4d700247d4b\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.Runtime.CompilerServices.Unsafe\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
@@ -1190,20 +1193,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.2D.Enhancers.Editor.AIBridge">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Enhancers.Editor.AIBridge.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Timeline">
@@ -1212,6 +1211,10 @@
     </Reference>
     <Reference Include="PPv2URPConverters">
       <HintPath>Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
@@ -1286,28 +1289,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    <Reference Include="Unity.InferenceEngine.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.InferenceEngine.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.InferenceEngine.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.InferenceEngine.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras">
@@ -1330,8 +1321,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
@@ -1346,24 +1345,24 @@
       <HintPath>Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.AI.Assistant.Agent.Dynamic.Extension.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.AI.Assistant.Agent.Dynamic.Extension.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.State.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.AppUI.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.AppUI.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.State.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Mathematics">
@@ -1378,16 +1377,20 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Multiplayer.Center.Common">
       <HintPath>Library\ScriptAssemblies\Unity.Multiplayer.Center.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core.Editor">
@@ -1422,6 +1425,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.AppUI">
+      <HintPath>Library\ScriptAssemblies\Unity.AppUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.AppUI.Navigation.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.AppUI.Navigation.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1434,16 +1441,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.Collections.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.AppUI">
-      <HintPath>Library\ScriptAssemblies\Unity.AppUI.dll</HintPath>
+    <Reference Include="Unity.Serialization.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Serialization.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Serialization.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Serialization.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Sprite.AIIntegration.Editor">
@@ -1454,10 +1457,6 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.InferenceEngine.iOSBLAS">
       <HintPath>Library\ScriptAssemblies\Unity.InferenceEngine.iOSBLAS.dll</HintPath>
       <Private>False</Private>
@@ -1466,12 +1465,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.Settings.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Settings.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.2D.Enhancers.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Enhancers.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Settings.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Settings.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.UI">

@@ -1,0 +1,141 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kawai\\source\\repos\\Final-Project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|c:\\users\\kawai\\source\\repos\\final-project\\assets\\scripts\\mechanics\\turnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mechanics\\turnmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|C:\\Users\\kawai\\source\\repos\\Final-Project\\assets\\scripts\\gameinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gameinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|C:\\Users\\kawai\\source\\repos\\Final-Project\\assets\\scripts\\ui\\endturnbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\endturnbutton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|C:\\Users\\kawai\\source\\repos\\Final-Project\\assets\\scripts\\charactersystems\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\charactersystems\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|C:\\Users\\kawai\\source\\repos\\Final-Project\\assets\\scripts\\charactersystems\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\charactersystems\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|C:\\Users\\kawai\\source\\repos\\Final-Project\\assets\\scripts\\charactersystems\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\charactersystems\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|C:\\Users\\kawai\\source\\repos\\Final-Project\\assets\\scripts\\ui\\playerhud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EABD3674-C11A-A7D2-F2A9-562A540B0759}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\playerhud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\CharacterSystems\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CharacterSystems\\PlayerController.cs",
+              "ToolTip": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\CharacterSystems\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CharacterSystems\\PlayerController.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAWwEoAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T18:47:09.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameInitializer.cs",
+              "DocumentMoniker": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\GameInitializer.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameInitializer.cs",
+              "ToolTip": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\GameInitializer.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameInitializer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T18:47:06.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TurnManager.cs",
+              "DocumentMoniker": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\Mechanics\\TurnManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Mechanics\\TurnManager.cs",
+              "ToolTip": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\Mechanics\\TurnManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Mechanics\\TurnManager.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAnwFgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T15:45:26.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EndTurnButton.cs",
+              "DocumentMoniker": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\UI\\EndTurnButton.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\EndTurnButton.cs",
+              "ToolTip": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\UI\\EndTurnButton.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\EndTurnButton.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T15:44:31.078Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayerStats.cs",
+              "DocumentMoniker": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\CharacterSystems\\PlayerStats.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CharacterSystems\\PlayerStats.cs",
+              "ToolTip": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\CharacterSystems\\PlayerStats.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CharacterSystems\\PlayerStats.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAUwEQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T18:37:35.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerHUD.cs",
+              "DocumentMoniker": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\UI\\PlayerHUD.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\PlayerHUD.cs",
+              "ToolTip": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\UI\\PlayerHUD.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\PlayerHUD.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T15:44:54.309Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\CharacterSystems\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\CharacterSystems\\Player.cs",
+              "ToolTip": "C:\\Users\\kawai\\source\\repos\\Final-Project\\Assets\\Scripts\\CharacterSystems\\Player.cs",
+              "RelativeToolTip": "Assets\\Scripts\\CharacterSystems\\Player.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-29T15:39:22.882Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

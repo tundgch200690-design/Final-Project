@@ -1,25 +1,27 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Nhớ dùng thư viện này nếu xài TextMeshPro
+using TMPro;
 
 public class PlayerHUD : MonoBehaviour
 {
-    public static PlayerHUD Instance; // Singleton để dễ gọi từ nơi khác
+    public static PlayerHUD Instance;
 
-    [Header("UI References")]
+    [Header("UI Components")]
     public Image avatarImage;
     public TextMeshProUGUI nameText;
-
-    [Header("Stats Text")]
-    public TextMeshProUGUI speedText;
     public TextMeshProUGUI mightText;
+    public TextMeshProUGUI speedText;
     public TextMeshProUGUI sanityText;
     public TextMeshProUGUI knowledgeText;
 
-    [Header("Controls")]
-    public Button endTurnButton;
+    [Header("Legacy Text Fallback")]
+    public Text legacyNameText;
+    public Text legacyMightText;
+    public Text legacySpeedText;
+    public Text legacySanityText;
+    public Text legacyKnowledgeText;
 
-    private PlayerStats currentPlayer;
+    private Player currentPlayer;
 
     private void Awake()
     {
@@ -28,40 +30,56 @@ public class PlayerHUD : MonoBehaviour
 
     private void Start()
     {
-        // Gán sự kiện click cho nút End Turn
-        endTurnButton.onClick.AddListener(OnEndTurnClicked);
+        if (TurnManager.Instance != null)
+        {
+            TurnManager.Instance.OnTurnChanged.AddListener(OnPlayerChanged);
+
+            if (TurnManager.Instance.CurrentPlayer != null)
+            {
+                OnPlayerChanged(TurnManager.Instance.CurrentPlayer);
+            }
+        }
     }
 
-    // Hàm này được gọi khi đến lượt người chơi mới
-    public void UpdateHUD(PlayerStats player)
+    private void OnDestroy()
     {
-        currentPlayer = player;
-
-        // Cập nhật thông tin tĩnh
-        avatarImage.sprite = player.data.portrait;
-        nameText.text = player.data.characterName;
-
-        // Cập nhật chỉ số động
-        RefreshStats();
+        if (TurnManager.Instance != null)
+        {
+            TurnManager.Instance.OnTurnChanged.RemoveListener(OnPlayerChanged);
+        }
     }
 
-    // Gọi hàm này mỗi khi chỉ số thay đổi (bị đánh, buff...)
-    public void RefreshStats()
+    public void OnPlayerChanged(Player newPlayer)
+    {
+        currentPlayer = newPlayer;
+        UpdateHUD();
+    }
+
+    private void UpdateHUD()
     {
         if (currentPlayer == null) return;
 
-        speedText.text = $"Speed: {currentPlayer.GetSpeed()}";
-        mightText.text = $"Might: {currentPlayer.GetMight()}";
-        sanityText.text = $"Sanity: {currentPlayer.GetSanity()}";
-        knowledgeText.text = $"Knowledge: {currentPlayer.GetKnowledge()}";
+        if (avatarImage != null && currentPlayer.avatar != null)
+        {
+            avatarImage.sprite = currentPlayer.avatar;
+        }
 
-        // Đổi màu đỏ nếu chỉ số sắp chết (Index thấp)
-        // (Đây là bài tập mở rộng cho bạn sau này)
+        UpdateText(nameText, legacyNameText, currentPlayer.playerName);
+        UpdateText(mightText, legacyMightText, $"Might: {currentPlayer.might}");
+        UpdateText(speedText, legacySpeedText, $"Speed: {currentPlayer.speed}");
+        UpdateText(sanityText, legacySanityText, $"Sanity: {currentPlayer.sanity}");
+        UpdateText(knowledgeText, legacyKnowledgeText, $"Knowledge: {currentPlayer.knowledge}");
     }
 
-    private void OnEndTurnClicked()
+    private void UpdateText(TextMeshProUGUI tmpText, Text legacyText, string value)
     {
-        // Gọi sang TurnManager để kết thúc lượt
-        TurnManager.Instance.EndCurrentTurn();
+        if (tmpText != null)
+        {
+            tmpText.text = value;
+        }
+        else if (legacyText != null)
+        {
+            legacyText.text = value;
+        }
     }
 }

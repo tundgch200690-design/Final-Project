@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -28,33 +28,40 @@ public class GameInitializer : MonoBehaviour
         // ===== STEP 1: MAP INITIALIZATION =====
         Log("STEP 1: Initializing map with anchor rooms...");
         
-        if (!MapManager.Instance.IsMapGenerated)
+        if (MapManager.Instance != null && !MapManager.Instance.IsMapGenerated)
         {
             MapManager.Instance.InitializeGame();
         }
 
-        while (!MapManager.Instance.IsMapGenerated)
+        while (MapManager.Instance != null && !MapManager.Instance.IsMapGenerated)
         {
             yield return new WaitForSeconds(0.1f);
         }
 
-        int totalRooms = MapManager.Instance.GetTotalRoomsPlaced();
-        int unusedTiles = MapManager.Instance.GetRemainingTiles();
-        Log($"? Map initialized successfully!");
-        Log($"  - Anchor rooms placed: {totalRooms}");
-        Log($"  - Tiles available for discovery: {unusedTiles}");
-        Log($"  - Player spawned at: Entrance Hall (1, 0)");
+        if (MapManager.Instance != null)
+        {
+            int totalRooms = MapManager.Instance.GetTotalRoomsPlaced();
+            int unusedTiles = MapManager.Instance.GetRemainingTiles();
+            Log($"✓ Map initialized successfully!");
+            Log($"  - Anchor rooms placed: {totalRooms}");
+            Log($"  - Tiles available for discovery: {unusedTiles}");
+            Log($"  - Player spawned at: Entrance Hall (1, 0)");
+        }
 
         // ===== STEP 2: WAIT FOR TURN MANAGER =====
         Log("STEP 2: Waiting for turn system to initialize...");
 
-        while (!TurnManager.Instance.IsGameInitialized)
+        while (TurnManager.Instance != null && !TurnManager.Instance.IsGameInitialized)
         {
             yield return new WaitForSeconds(0.1f);
         }
 
-        Log($"? Turn system initialized!");
-        Log($"  - Active players: {TurnManager.Instance.allPlayers.Count}");
+        Log($"✓ Turn system initialized!");
+        // FIXED: Use players instead of allPlayers
+        if (TurnManager.Instance != null)
+        {
+            Log($"  - Active players: {TurnManager.Instance.players.Count}");
+        }
 
         // ===== STEP 3: GAME READY =====
         Log("STEP 3: Finalizing game startup...");

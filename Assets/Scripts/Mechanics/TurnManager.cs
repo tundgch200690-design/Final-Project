@@ -1,17 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance;
 
-    [Header("Danh sách người chơi")]
-    public List<PlayerController> allPlayers = new List<PlayerController>();
+    [Header("Sprint 3 Player System")]
+    public List<Player> players = new List<Player>();
 
-    [Header("Trạng thái")]
+    [Header("Turn State")]
     public int currentPlayerIndex = 0;
     private bool isGameInitialized = false;
+
+    [Header("Events")]
+    public UnityEvent<Player> OnTurnChanged = new UnityEvent<Player>();
+
+    public bool IsGameInitialized => isGameInitialized;
+    public Player CurrentPlayer => (players.Count > 0 && currentPlayerIndex >= 0 && currentPlayerIndex < players.Count) ? players[currentPlayerIndex] : null;
 
     private void Awake()
     {
@@ -21,85 +28,72 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(InitializeGameSequence());
+        StartCoroutine(InitializeGame());
     }
 
-    /// <summary>
-    /// Khởi tạo trò chơi: Chờ bản đồ sinh xong, rồi bắt đầu lượt chơi
-    /// </summary>
-    private IEnumerator InitializeGameSequence()
+    private IEnumerator InitializeGame()
     {
-        Debug.Log("[TurnManager] Waiting for map generation...");
+        yield return new WaitForEndOfFrame();
 
-        // Chờ cho đến khi bản đồ sinh xong
-        while (!MapManager.Instance.IsMapGenerated)
+        if (players.Count >= 3 && players.Count <= 6)
         {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        Debug.Log("[TurnManager] Map generation complete! Initializing game...");
-
-        // Bây giờ tìm tất cả Player
-        PlayerController[] foundPlayers = FindObjectsOfType<PlayerController>();
-        allPlayers.AddRange(foundPlayers);
-
-        if (allPlayers.Count > 0)
-        {
-            Debug.Log($"[TurnManager] Found {allPlayers.Count} players. Starting first turn...");
             isGameInitialized = true;
-            StartTurn(0);
+            StartFirstTurn();
         }
         else
         {
-            Debug.LogError("[TurnManager] No players found in scene!");
+            Debug.LogError($"[TurnManager] Invalid player count: {players.Count}. Need 3-6 players.");
         }
     }
 
-    public void StartTurn(int playerIndex)
+    private void StartFirstTurn()
     {
-        if (!isGameInitialized)
+        currentPlayerIndex = 0;
+        if (CurrentPlayer != null)
         {
-            Debug.LogWarning("[TurnManager] Game not initialized yet!");
-            return;
-        }
-
-        currentPlayerIndex = playerIndex;
-        PlayerController activePlayer = allPlayers[currentPlayerIndex];
-
-        Debug.Log($"[TurnManager] --- Lượt của: {activePlayer.characterData.characterName} ---");
-
-        // 1. Reset bước di chuyển cho nhân vật đó
-        activePlayer.StartTurn();
-
-        // 2. Cập nhật UI hiển thị thông tin người đó
-        PlayerStats stats = activePlayer.GetComponent<PlayerStats>();
-        if (PlayerHUD.Instance != null)
-        {
-            PlayerHUD.Instance.UpdateHUD(stats);
-        }
-
-        // 3. Khóa di chuyển của những người KHÁC
-        foreach (var p in allPlayers)
-        {
-            p.enabled = (p == activePlayer);
+            Debug.Log($"[TurnManager] Game started! {CurrentPlayer.playerName}'s turn");
+            OnTurnChanged?.Invoke(CurrentPlayer);
         }
     }
 
-    public void EndCurrentTurn()
+    public void EndTurn()
     {
-        Debug.Log("[TurnManager] Kết thúc lượt!");
+        if (!isGameInitialized || players.Count == 0) return;
 
-        // Chuyển sang người tiếp theo
-        currentPlayerIndex++;
+        Player previousPlayer = CurrentPlayer;
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;
+        Player newPlayer = CurrentPlayer;
 
-        if (currentPlayerIndex >= allPlayers.Count)
+        if (newPlayer != null)
         {
-            currentPlayerIndex = 0;
-            Debug.Log("[TurnManager] >>> Bắt đầu vòng chơi mới! <<<");
+            Debug.Log($"[TurnManager] Now {newPlayer.playerName}'s turn! (Index: {currentPlayerIndex})");
+            OnTurnChanged?.Invoke(newPlayer);
         }
-
-        StartTurn(currentPlayerIndex);
     }
 
-    public bool IsGameInitialized => isGameInitialized;
+    public void SimpleEndTurn()
+    {
+        Debug.Log("Simple End Turn clicked!");
+        EndTurn();
+    }
+
+    [ContextMenu("Debug End Turn")]
+    public void DebugEndTurn()
+    {
+        EndTurn();
+    }
+
+    // Add this temporary method to TurnManager for easy testing
+    public void QuickTest()
+    {
+        Debug.Log("=== SPRINT 3 QUICK TEST ===");
+        Debug.Log($"Players in list: {players.Count}");
+        Debug.Log($"Game initialized: {isGameInitialized}");
+        Debug.Log($"Current player: {CurrentPlayer?.playerName ?? "NONE"}");
+        
+        if (players.Count > 0)
+        {
+            SimpleEndTurn();
+        }
+    }
 }
