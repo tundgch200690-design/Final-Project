@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fixed_BasementLanding
   m_EditorClassIdentifier: 
   roomName: Basement Landing
-  roomSprite: {fileID: 0}
+  roomSprite: {fileID: 1910701037949800364, guid: 91d3f82ca22a64a478e8ef8be9942141, type: 3}
   allowedFloors: 1
   doors: -1
   hasOmen: 0

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86b06d87df938004b91c7cb7e2d6f8e3, type: 3}
+  m_Name: Ballroom 35
+  m_EditorClassIdentifier: Assembly-CSharp::RoomTileSO
+  roomName: Tower
+  roomSprite: {fileID: 2263430783425909968, guid: a06473ccedd99fa45bd2f326515d7430, type: 3}
+  allowedFloors: 4
+  doors: 10
+  hasOmen: 0
+  hasItem: 0
+  hasEvent: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fixed_Foyer
   m_EditorClassIdentifier: 
   roomName: Foyer
-  roomSprite: {fileID: 0}
+  roomSprite: {fileID: -7215764720722008381, guid: a27b49f8bac709746ab29c47e626eb30, type: 3}
   allowedFloors: 2
   doors: -1
   hasOmen: 0

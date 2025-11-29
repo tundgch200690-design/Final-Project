@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fixed_EntranceHall
   m_EditorClassIdentifier: 
   roomName: Entrance Hall
-  roomSprite: {fileID: 0}
+  roomSprite: {fileID: -3873396774908385787, guid: b4160a6cda4116c4fa59ed2be16bc700, type: 3}
   allowedFloors: 2
   doors: 13
   hasOmen: 0

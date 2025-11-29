@@ -1568,7 +1568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5f5f5ea825ddb4aaeda2f322bb6b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 1620946059888399041, guid: be75edae1125e2b4386c40c2974e1d6b, type: 3}
   tileSize: 2
   maxIterations: 50
   upperLanding: {fileID: 11400000, guid: f1afa8ac1be378541890b4913113e191, type: 2}

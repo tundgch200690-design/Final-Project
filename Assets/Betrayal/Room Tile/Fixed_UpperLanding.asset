@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fixed_UpperLanding
   m_EditorClassIdentifier: 
   roomName: Upper Landing
-  roomSprite: {fileID: 0}
+  roomSprite: {fileID: -803492126972049652, guid: 435e5778f9e29f24db2819e814c411c1, type: 3}
   allowedFloors: 4
   doors: -1
   hasOmen: 0

@@ -1,0 +1,137 @@
+﻿using UnityEngine;
+
+// Tự động thêm PlayerStats nếu chưa có
+[RequireComponent(typeof(PlayerStats))]
+public class PlayerController : MonoBehaviour
+{
+    [Header("Cài đặt")]
+    public CharacterDataSO characterData; // Kéo file data (Ox, Brandon...) vào đây
+
+    [Header("Runtime Info")]
+    public Vector2Int gridPosition;
+    public int currentMovesLeft;
+
+    private PlayerStats stats;
+    private bool isMoving = false;
+    private float moveSpeed = 5f;
+
+    private void Awake()
+    {
+        stats = GetComponent<PlayerStats>();
+    }
+
+    private void Start()
+    {
+        // 1. Nạp dữ liệu vào Stats
+        if (characterData != null)
+        {
+            stats.Initialize(characterData);
+        }
+        else
+        {
+            Debug.LogError("Chưa gán CharacterData cho PlayerController!");
+        }
+
+        // 2. Đặt vị trí ban đầu (Ví dụ tại 0,0)
+        // Lưu ý: MapManager phải được khởi chạy trước
+        SnapToGrid(new Vector2Int(0, 0));
+
+        // 3. Bắt đầu lượt chơi
+        StartTurn();
+    }
+
+    public void StartTurn()
+    {
+        // Lấy Speed hiện tại từ bảng chỉ số
+        currentMovesLeft = stats.GetSpeed();
+        Debug.Log($"Bắt đầu lượt của {characterData.characterName}. Speed: {currentMovesLeft}");
+    }
+
+    private void Update()
+    {
+        if (isMoving || stats.IsDead) return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            HandleMovementInput();
+        }
+    }
+
+    private void HandleMovementInput()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Cần đảm bảo MapManager đã có hàm WorldToGrid
+        if (MapManager.Instance != null)
+        {
+            Vector2Int targetGridPos = MapManager.Instance.WorldToGrid(mousePos);
+            TryMove(targetGridPos);
+        }
+    }
+
+    public void TryMove(Vector2Int targetPos)
+    {
+        // Kiểm tra chết
+        if (stats.IsDead)
+        {
+            Debug.Log("Nhân vật đã chết, không thể di chuyển.");
+            return;
+        }
+
+        // Kiểm tra hết bước
+        if (currentMovesLeft <= 0)
+        {
+            Debug.Log("Hết bước di chuyển!");
+            return;
+        }
+
+        // Kiểm tra khoảng cách 1 ô
+        int dist = Mathf.Abs(targetPos.x - gridPosition.x) + Mathf.Abs(targetPos.y - gridPosition.y);
+        if (dist != 1) return;
+
+        // Try to discover room if it doesn't exist yet
+        if (MapManager.Instance != null)
+        {
+            if (!MapManager.Instance.HasRoom(targetPos))
+            {
+                bool discoveredRoom = MapManager.Instance.TryDiscoverRoom(targetPos);
+                if (!discoveredRoom)
+                {
+                    Debug.Log($"Cannot move to {targetPos} - no compatible room found to discover.");
+                    return;
+                }
+            }
+
+            StartCoroutine(MoveRoutine(targetPos));
+        }
+    }
+
+    private System.Collections.IEnumerator MoveRoutine(Vector2Int targetPos)
+    {
+        isMoving = true;
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = MapManager.Instance.GridToWorld(targetPos);
+
+        float t = 0;
+        while (t < 1)
+        {
+            t += Time.deltaTime * moveSpeed;
+            transform.position = Vector3.Lerp(startPos, endPos, t);
+            yield return null;
+        }
+
+        gridPosition = targetPos;
+        currentMovesLeft--;
+
+        Debug.Log($"Đã đi. Còn lại {currentMovesLeft} bước.");
+        isMoving = false;
+    }
+
+    public void SnapToGrid(Vector2Int pos)
+    {
+        gridPosition = pos;
+        if (MapManager.Instance != null)
+            transform.position = MapManager.Instance.GridToWorld(pos);
+    }
+}

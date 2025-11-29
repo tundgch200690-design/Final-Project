@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fixed_GrandStaircase
   m_EditorClassIdentifier: 
   roomName: Grand Staircase
-  roomSprite: {fileID: 0}
+  roomSprite: {fileID: 8367136225765855952, guid: 2212493ac0ccafa46abd3aef7737d9e7, type: 3}
   allowedFloors: 2
   doors: 8
   hasOmen: 0
