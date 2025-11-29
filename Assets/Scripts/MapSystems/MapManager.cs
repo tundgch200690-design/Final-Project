@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    public GameObject gameObject;
-
     public static MapManager Instance;
 
     [Header("Cài đặt Hệ thống")]
