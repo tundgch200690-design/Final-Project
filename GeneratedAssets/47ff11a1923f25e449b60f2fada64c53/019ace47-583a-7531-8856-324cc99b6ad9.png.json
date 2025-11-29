@@ -1,0 +1,20 @@
+{
+    "asset": "47ff11a1923f25e449b60f2fada64c53",
+    "fileName": "019ace47-583a-7531-8856-324cc99b6ad9.png",
+    "prompt": "Create a texture for an end turn button in a player dashboard",
+    "negativePrompt": "",
+    "model": "5b5b2af1-6ea4-4266-b087-cc9f3bf4f450",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "257e63ae39a4b19cb55daef4d30dcd4e",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}

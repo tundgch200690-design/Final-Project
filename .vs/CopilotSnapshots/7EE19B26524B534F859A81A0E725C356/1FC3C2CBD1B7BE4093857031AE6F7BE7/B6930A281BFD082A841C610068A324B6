@@ -1,0 +1,244 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using TMPro;
+
+public class MapManager : MonoBehaviour
+{
+    public static MapManager Instance;
+
+    [Header("Cài đặt Hệ thống")]
+    public float tileSize = 2.0f; // Kích thước mỗi ô (đơn vị Unity)
+    public int maxIterations = 50; // Giới hạn số phòng sinh ra tối đa để không treo máy
+
+    [Header("Cấu hình Tile Cố định (Setup ban đầu)")]
+    public RoomTileSO upperLanding;
+    public RoomTileSO basementLanding;
+
+    [Header("Bộ 3 Phòng Ground (Theo ảnh thiết kế)")]
+    public RoomTileSO foyer;          // Trung tâm (0,0)
+    public RoomTileSO grandStaircase; // Bên trái (-1,0)
+    public RoomTileSO entranceHall;   // Bên phải (1,0)
+
+    [Header("Kho Dữ liệu Ngẫu nhiên")]
+    public List<RoomTileSO> tileDeck; // Danh sách tất cả các phòng có thể bốc
+
+    // Dữ liệu lưu trữ
+    private Dictionary<Vector2Int, RoomTileSO> mapGrid = new Dictionary<Vector2Int, RoomTileSO>();
+    private List<Vector2Int> availableSpots = new List<Vector2Int>();
+
+    // Định nghĩa khoảng cách giữa các tầng (Y axis)
+    private readonly Vector2Int UPPER_OFFSET = new Vector2Int(0, 50);
+    private readonly Vector2Int BASEMENT_OFFSET = new Vector2Int(0, -50);
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        SetupFixedMap();      // Bước 1: Xếp bài cố định
+        GenerateRandomMap();  // Bước 2: Xếp bài ngẫu nhiên
+    }
+
+    // --- BƯỚC 1: XẾP CÁC PHÒNG CỐ ĐỊNH ---
+    private void SetupFixedMap()
+    {
+        Debug.Log("--- BẮT ĐẦU SETUP BẢN ĐỒ ---");
+
+        // 1. Setup UPPER FLOOR (Tầng trên)
+        if (upperLanding != null)
+            PlaceTileLogic(UPPER_OFFSET, upperLanding);
+
+        // 2. Setup BASEMENT (Tầng hầm)
+        if (basementLanding != null)
+            PlaceTileLogic(BASEMENT_OFFSET, basementLanding);
+
+        // 3. Setup GROUND FLOOR (Tầng trệt) - Theo thứ tự Trái -> Phải
+
+        // Foyer nằm giữa làm tâm (0,0)
+        if (foyer != null)
+            PlaceTileLogic(new Vector2Int(0, 0), foyer);
+
+        // Grand Staircase nằm bên Trái (-1, 0)
+        if (grandStaircase != null)
+            PlaceTileLogic(new Vector2Int(-1, 0), grandStaircase);
+
+        // Entrance Hall nằm bên Phải (1, 0)
+        if (entranceHall != null)
+            PlaceTileLogic(new Vector2Int(1, 0), entranceHall);
+    }
+
+    // --- BƯỚC 2: THUẬT TOÁN SINH NGẪU NHIÊN ---
+    private void GenerateRandomMap()
+    {
+        int safetyCount = 0;
+
+        // Chạy vòng lặp khi còn bài và còn chỗ trống
+        while (tileDeck.Count > 0 && availableSpots.Count > 0 && safetyCount < maxIterations)
+        {
+            safetyCount++;
+
+            // A. Chọn ngẫu nhiên một vị trí đang chờ (cạnh cửa hở)
+            int randSpotIndex = Random.Range(0, availableSpots.Count);
+            Vector2Int targetPos = availableSpots[randSpotIndex];
+
+            // B. Xác định xem vị trí này thuộc tầng nào
+            FloorLayer currentLayer = DetermineFloorLayer(targetPos);
+
+            // C. Tìm một thẻ bài phù hợp trong bộ bài
+            RoomTileSO selectedTile = FindMatchingTile(targetPos, currentLayer);
+
+            if (selectedTile != null)
+            {
+                // Tìm thấy -> Đặt xuống
+                PlaceTileLogic(targetPos, selectedTile);
+                tileDeck.Remove(selectedTile); // Xóa khỏi bộ bài
+            }
+            else
+            {
+                // Không tìm thấy bài nào khớp vào chỗ này -> Xóa chỗ này khỏi danh sách chờ
+                availableSpots.RemoveAt(randSpotIndex);
+            }
+        }
+
+        Debug.Log($"Hoàn tất sinh map! Tổng số phòng: {mapGrid.Count}");
+    }
+
+    // --- CÁC HÀM LOGIC BỔ TRỢ ---
+
+    // Hàm xác định tầng dựa trên tọa độ Y
+    private FloorLayer DetermineFloorLayer(Vector2Int pos)
+    {
+        // Nếu gần khu vực Upper (50)
+        if (pos.y >= UPPER_OFFSET.y - 20 && pos.y <= UPPER_OFFSET.y + 20)
+            return FloorLayer.Upper;
+
+        // Nếu gần khu vực Basement (-50)
+        if (pos.y <= BASEMENT_OFFSET.y + 20 && pos.y >= BASEMENT_OFFSET.y - 20)
+            return FloorLayer.Basement;
+
+        // Mặc định là Ground
+        return FloorLayer.Ground;
+    }
+
+    // Hàm tìm kiếm Tile phù hợp từ bộ bài
+    private RoomTileSO FindMatchingTile(Vector2Int pos, FloorLayer layer)
+    {
+        // Xáo trộn bộ bài để ngẫu nhiên
+        List<RoomTileSO> shuffledDeck = tileDeck.OrderBy(x => Random.value).ToList();
+
+        foreach (RoomTileSO tile in shuffledDeck)
+        {
+            // 1. Kiểm tra tầng: Tile này có được phép đặt ở tầng hiện tại không?
+            if (!tile.CanPlaceOnFloor(layer)) continue;
+
+            // 2. Kiểm tra kết nối: Cửa có khớp với hàng xóm không?
+            if (IsPlacementValid(pos, tile))
+            {
+                return tile;
+            }
+        }
+        return null; // Không tìm được
+    }
+
+    // Hàm đặt phòng cốt lõi
+    private void PlaceTileLogic(Vector2Int pos, RoomTileSO tile)
+    {
+        if (mapGrid.ContainsKey(pos)) return;
+
+        mapGrid.Add(pos, tile);
+        SpawnRoomVisual(pos, tile);
+
+        // Xóa vị trí này khỏi danh sách chờ (vì đã đặt rồi)
+        if (availableSpots.Contains(pos)) availableSpots.Remove(pos);
+
+        // Quét 4 hướng xung quanh để thêm các vị trí chờ mới
+        UpdateAvailableSpots(pos, tile);
+    }
+
+    // Thêm các ô trống xung quanh vào danh sách chờ nếu có cửa mở ra đó
+    private void UpdateAvailableSpots(Vector2Int pos, RoomTileSO tile)
+    {
+        CheckAndAddSpot(pos + Vector2Int.up, DoorDirection.North, tile);
+        CheckAndAddSpot(pos + Vector2Int.right, DoorDirection.East, tile);
+        CheckAndAddSpot(pos + Vector2Int.down, DoorDirection.South, tile);
+        CheckAndAddSpot(pos + Vector2Int.left, DoorDirection.West, tile);
+    }
+
+    private void CheckAndAddSpot(Vector2Int neighborPos, DoorDirection myDoorDir, RoomTileSO myTile)
+    {
+        // Nếu mình không có cửa hướng này -> Không cần quan tâm
+        if (!myTile.HasDoor(myDoorDir)) return;
+
+        // Nếu hàng xóm đã có phòng -> Không phải chỗ trống
+        if (mapGrid.ContainsKey(neighborPos)) return;
+
+        // Nếu chưa có trong danh sách -> Thêm vào
+        if (!availableSpots.Contains(neighborPos)) availableSpots.Add(neighborPos);
+    }
+
+    // --- LOGIC KIỂM TRA KHỚP CỬA ---
+    private bool IsPlacementValid(Vector2Int pos, RoomTileSO newTile)
+    {
+        if (!CheckConnection(pos + Vector2Int.up, DoorDirection.North, newTile)) return false;
+        if (!CheckConnection(pos + Vector2Int.right, DoorDirection.East, newTile)) return false;
+        if (!CheckConnection(pos + Vector2Int.down, DoorDirection.South, newTile)) return false;
+        if (!CheckConnection(pos + Vector2Int.left, DoorDirection.West, newTile)) return false;
+        return true;
+    }
+
+    private bool CheckConnection(Vector2Int neighborPos, DoorDirection myDir, RoomTileSO newTile)
+    {
+        // Nếu không có hàng xóm thì OK (trừ khi muốn bắt buộc kín map)
+        if (!mapGrid.ContainsKey(neighborPos)) return true;
+
+        RoomTileSO neighbor = mapGrid[neighborPos];
+        DoorDirection neighborOppositeDir = GetOppositeDirection(myDir);
+
+        // Logic: Cửa nối Cửa. 
+        bool iHaveDoor = newTile.HasDoor(myDir);
+        bool neighborHasDoor = neighbor.HasDoor(neighborOppositeDir);
+
+        return iHaveDoor == neighborHasDoor;
+    }
+
+    private DoorDirection GetOppositeDirection(DoorDirection dir)
+    {
+        switch (dir)
+        {
+            case DoorDirection.North: return DoorDirection.South;
+            case DoorDirection.South: return DoorDirection.North;
+            case DoorDirection.East: return DoorDirection.West;
+            case DoorDirection.West: return DoorDirection.East;
+            default: return DoorDirection.None;
+        }
+    }
+
+    // --- HIỂN THỊ HÌNH ẢNH (VISUALS) ---
+    private void SpawnRoomVisual(Vector2Int coord, RoomTileSO data)
+    {
+        GameObject newRoomObj = new GameObject(data.roomName);
+        newRoomObj.transform.position = new Vector3(coord.x * tileSize, coord.y * tileSize, 0);
+
+        // Thêm Sprite
+        SpriteRenderer sr = newRoomObj.AddComponent<SpriteRenderer>();
+        if (data.roomSprite != null) sr.sprite = data.roomSprite;
+
+        // Thêm Text Debug để dễ nhìn tên phòng
+        GameObject textObj = new GameObject("Label");
+        textObj.transform.SetParent(newRoomObj.transform);
+        textObj.transform.localPosition = Vector3.zero;
+        TextMesh tm = textObj.AddComponent<TextMesh>();
+        tm.text = data.roomName;
+        tm.characterSize = 0.15f;
+        tm.anchor = TextAnchor.MiddleCenter;
+        tm.color = Color.black;
+        // Đẩy text lên trên cùng (Z axis) để không bị sprite che
+        textObj.transform.localPosition = new Vector3(0, 0, -1);
+
+        newRoomObj.transform.SetParent(this.transform);
+        newRoomObj.name = $"{data.roomName} ({coord.x},{coord.y})";
+    }
+}

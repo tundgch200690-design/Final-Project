@@ -1,0 +1,20 @@
+{
+    "asset": "fa713cf72de6a384bbd4fb50b378ead7",
+    "fileName": "019ace46-6751-7950-9421-d0e08e9af29b.png",
+    "prompt": "Design an avatar sprite for a player dashboard in a game",
+    "negativePrompt": "",
+    "model": "5b5b2af1-6ea4-4266-b087-cc9f3bf4f450",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "da316b6d4165210294bfa14d9b60c03b",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}
