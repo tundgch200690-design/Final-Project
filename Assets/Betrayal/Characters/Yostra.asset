@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Yostra
   m_EditorClassIdentifier: Assembly-CSharp::Player
   playerName: Yos
-  avatar: {fileID: 0}
+  avatar: {fileID: -69228392967884597, guid: 0dfcd506c1d43b3428e5de606cb5ce9a, type: 3}
   might: 4
   speed: 4
   sanity: 4

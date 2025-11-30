@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Vivian
   m_EditorClassIdentifier: Assembly-CSharp::Player
   playerName: Vil
-  avatar: {fileID: 0}
+  avatar: {fileID: 4434910161787216774, guid: 47ff11a1923f25e449b60f2fada64c53, type: 3}
   might: 5
   speed: 7
   sanity: 4

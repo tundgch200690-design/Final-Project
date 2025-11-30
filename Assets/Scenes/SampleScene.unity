@@ -1568,8 +1568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5f5f5ea825ddb4aaeda2f322bb6b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSize: 10
-  maxIterations: 500
+  tileSize: 4
+  maxIterations: 250
   upperLanding: {fileID: 11400000, guid: f1afa8ac1be378541890b4913113e191, type: 2}
   basementLanding: {fileID: 11400000, guid: cd6d50d39e95c7a43a46400be57dce81, type: 2}
   foyer: {fileID: 11400000, guid: ff7b344b92aa9354a8d00e19bdd571b0, type: 2}

@@ -1,0 +1,89 @@
+﻿using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+
+public class CharacterSelectionUI : MonoBehaviour
+{
+    [Header("UI References")]
+    [SerializeField] private Transform characterButtonContainer;
+    [SerializeField] private Button startGameButton;
+    [SerializeField] private TextMeshProUGUI selectedCountText;
+    [SerializeField] private CharacterSelectionButton characterButtonPrefab;
+
+    [Header("Settings")]
+    [SerializeField] private string gamePlaySceneName = "GameScene";
+
+    private void Start()
+    {
+        InitializeCharacterSelection();
+        UpdateUI();
+    }
+
+    private void InitializeCharacterSelection()
+    {
+        if (CharacterSelectionManager.Instance == null)
+        {
+            Debug.LogError("CharacterSelectionManager not found!");
+            return;
+        }
+
+        // Clear existing buttons
+        foreach (Transform child in characterButtonContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Create buttons for each available character
+        foreach (Player character in CharacterSelectionManager.Instance.GetAvailableCharacters())
+        {
+            CharacterSelectionButton button = Instantiate(characterButtonPrefab, characterButtonContainer);
+            button.Initialize(character, OnCharacterSelected);
+        }
+
+        if (startGameButton != null)
+        {
+            startGameButton.onClick.AddListener(OnStartGameClicked);
+        }
+    }
+
+    private void OnCharacterSelected()
+    {
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        int selectedCount = CharacterSelectionManager.Instance.GetSelectedPlayerCount();
+        int minPlayers = CharacterSelectionManager.Instance.GetMinPlayers();
+        int maxPlayers = CharacterSelectionManager.Instance.GetMaxPlayers();
+
+        if (selectedCountText != null)
+        {
+            selectedCountText.text = $"Selected: {selectedCount}/{maxPlayers}";
+        }
+
+        if (startGameButton != null)
+        {
+            startGameButton.interactable = selectedCount >= minPlayers && selectedCount <= maxPlayers;
+        }
+    }
+
+    private void OnStartGameClicked()
+    {
+        CharacterSelectionManager.Instance.StartGame();
+        
+        if (TurnManager.Instance != null && TurnManager.Instance.players.Count >= CharacterSelectionManager.Instance.GetMinPlayers())
+        {
+            // Load the game scene
+            UnityEngine.SceneManagement.SceneManager.LoadScene(gamePlaySceneName);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (startGameButton != null)
+        {
+            startGameButton.onClick.RemoveListener(OnStartGameClicked);
+        }
+    }
+}

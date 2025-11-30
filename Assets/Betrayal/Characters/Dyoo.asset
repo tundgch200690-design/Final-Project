@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dyoo
   m_EditorClassIdentifier: Assembly-CSharp::Player
   playerName: Dyoo
-  avatar: {fileID: 0}
+  avatar: {fileID: -9121547024109253725, guid: d594b6bfefa4f5c46b4f23275d8f7249, type: 3}
   might: 4
   speed: 4
   sanity: 4

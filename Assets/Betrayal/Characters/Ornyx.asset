@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ornyx
   m_EditorClassIdentifier: Assembly-CSharp::Player
   playerName: OX
-  avatar: {fileID: 0}
+  avatar: {fileID: 21300000, guid: fa713cf72de6a384bbd4fb50b378ead7, type: 3}
   might: 1
   speed: 2
   sanity: 5

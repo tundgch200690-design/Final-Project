@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Brenda
   m_EditorClassIdentifier: Assembly-CSharp::Player
   playerName: Bren
-  avatar: {fileID: 0}
+  avatar: {fileID: -1789101319987648465, guid: aad4deb1bcebee945b189252a7f6f94e, type: 3}
   might: 1
   speed: 3
   sanity: 4

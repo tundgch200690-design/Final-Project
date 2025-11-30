@@ -35,43 +35,15 @@ public class TurnManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        // Allow manual population from CharacterSelectionManager
-        // If players list is already populated (from CharacterSelectionManager), use it
-        // Otherwise check for 3-6 players in the list
         if (players.Count >= 3 && players.Count <= 6)
         {
             isGameInitialized = true;
             StartFirstTurn();
         }
-        else if (players.Count == 0)
-        {
-            Debug.LogWarning($"[TurnManager] No players assigned. Use CharacterSelectionManager to select players or manually assign players in the Inspector.");
-        }
         else
         {
             Debug.LogError($"[TurnManager] Invalid player count: {players.Count}. Need 3-6 players.");
         }
-    }
-
-    // New method to manually initialize the game (called by CharacterSelectionManager)
-    public void InitializeGameWithPlayers(List<Player> selectedPlayers)
-    {
-        if (selectedPlayers == null || selectedPlayers.Count == 0)
-        {
-            Debug.LogError("[TurnManager] No players provided!");
-            return;
-        }
-
-        if (selectedPlayers.Count < 3 || selectedPlayers.Count > 6)
-        {
-            Debug.LogError($"[TurnManager] Invalid player count: {selectedPlayers.Count}. Need 3-6 players.");
-            return;
-        }
-
-        players.Clear();
-        players.AddRange(selectedPlayers);
-        isGameInitialized = true;
-        StartFirstTurn();
     }
 
     private void StartFirstTurn()
