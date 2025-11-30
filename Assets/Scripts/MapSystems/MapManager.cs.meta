@@ -1,2 +1,16 @@
 fileFormatVersion: 2
 guid: 4d5f5f5ea825ddb4aaeda2f322bb6b4f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - upperLanding: {fileID: 11400000, guid: f1afa8ac1be378541890b4913113e191, type: 2}
+  - basementLanding: {fileID: 11400000, guid: cd6d50d39e95c7a43a46400be57dce81, type: 2}
+  - foyer: {fileID: 11400000, guid: ff7b344b92aa9354a8d00e19bdd571b0, type: 2}
+  - grandStaircase: {fileID: 11400000, guid: a87339b8d5262de43b94d6eeb5992982, type: 2}
+  - entranceHall: {fileID: 11400000, guid: b521dd5205339db4f86f399576c03250, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

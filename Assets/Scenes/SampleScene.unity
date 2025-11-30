@@ -1568,14 +1568,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5f5f5ea825ddb4aaeda2f322bb6b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSize: 2
-  maxIterations: 50
+  tileSize: 10
+  maxIterations: 500
   upperLanding: {fileID: 11400000, guid: f1afa8ac1be378541890b4913113e191, type: 2}
   basementLanding: {fileID: 11400000, guid: cd6d50d39e95c7a43a46400be57dce81, type: 2}
   foyer: {fileID: 11400000, guid: ff7b344b92aa9354a8d00e19bdd571b0, type: 2}
   grandStaircase: {fileID: 11400000, guid: a87339b8d5262de43b94d6eeb5992982, type: 2}
   entranceHall: {fileID: 11400000, guid: b521dd5205339db4f86f399576c03250, type: 2}
-  tileDeck: []
+  tileDeck:
+  - {fileID: 11400000, guid: 3df6222cedc7ebc49a51ac16b8f9cc64, type: 2}
+  - {fileID: 11400000, guid: cb777c77b0f6d27418093de1dedeb896, type: 2}
+  - {fileID: 11400000, guid: a8252927a5384464485fa99904b05b31, type: 2}
+  - {fileID: 11400000, guid: af6d5ff84db3014469d150d8393e8bd5, type: 2}
+  - {fileID: 11400000, guid: d825247f7f2b8394d896e6183c08a4cc, type: 2}
+  - {fileID: 11400000, guid: da6b4554ededdb241bbbb7717ba2a477, type: 2}
+  - {fileID: 11400000, guid: 01fc3fd7f1d91f040b6b3e512b01e2ea, type: 2}
+  - {fileID: 11400000, guid: b3156fe8d3fdf6e49ba255f642e2c01b, type: 2}
+  - {fileID: 11400000, guid: 092512290bd0f06478122bc77f452598, type: 2}
+  - {fileID: 11400000, guid: ef8df9316f0ae7a48a2771290ffe1007, type: 2}
+  - {fileID: 11400000, guid: 8b00ea5a12cd39148ac6ec45fe80b06f, type: 2}
+  - {fileID: 11400000, guid: b53aa6ea10a0ac94694e962dc2d8c8eb, type: 2}
+  - {fileID: 11400000, guid: 52719ac8f7cba0b46b1a3d69166b2343, type: 2}
+  - {fileID: 11400000, guid: 61f28186dfc0c4a44b1bf529a04607e7, type: 2}
+  - {fileID: 11400000, guid: 301db542ed736e2479efd76f765a0e6f, type: 2}
+  - {fileID: 11400000, guid: c051dfbc381fc9a4294af9849206f2e2, type: 2}
+  - {fileID: 11400000, guid: 683bf6c6d7a314145b27bc97ade11f70, type: 2}
+  - {fileID: 11400000, guid: 141a9667df6ce3847ae5c9bfd099124e, type: 2}
+  - {fileID: 11400000, guid: 23f920f7db7c6e941b267350865bcb9b, type: 2}
+  - {fileID: 11400000, guid: 0d79caf16f628df409be71a8be2da903, type: 2}
+  - {fileID: 11400000, guid: fff9d49fed6377c47a85042b9d7394b5, type: 2}
+  - {fileID: 11400000, guid: 1739973f0940df745a630101a5e7f853, type: 2}
+  - {fileID: 11400000, guid: 702ab99f70eb90140a080b373c21322d, type: 2}
+  - {fileID: 11400000, guid: 2a7bb158d8b9a4046a41db2f827ffa01, type: 2}
+  - {fileID: 11400000, guid: e8f4869058167fb42929b4bd8cbbe4d8, type: 2}
+  - {fileID: 11400000, guid: 92e85cd9a8716cd48a415617f15d3d11, type: 2}
+  - {fileID: 11400000, guid: bff72477b3f614d4fba5de084338a0e3, type: 2}
+  - {fileID: 11400000, guid: f499351c9d0af07418c72c483ea7a89d, type: 2}
+  - {fileID: 11400000, guid: 65af312e65c9004419fb4be1c64896ed, type: 2}
+  - {fileID: 11400000, guid: 52282204fe902314bbf3585b89415d5e, type: 2}
+  - {fileID: 11400000, guid: 4aa4b55fd25169a46a65b9dacb40f34c, type: 2}
+  - {fileID: 11400000, guid: 254370cef27394844a565a14085917af, type: 2}
+  - {fileID: 11400000, guid: bcc94704441d3334ebf63b217a1eaa1c, type: 2}
+  - {fileID: 11400000, guid: 9c669e8888e98a04e9ab54d481984417, type: 2}
+  - {fileID: 11400000, guid: b8ef9a00cddb676489fd6f7f477b373c, type: 2}
+  - {fileID: 11400000, guid: 0dc14bb07fdf21340932717ae238375e, type: 2}
+  - {fileID: 11400000, guid: e8648df2bf9f7e143ad71e3636e551ee, type: 2}
+  - {fileID: 11400000, guid: 85fcc62f8850cdd4d8133b64d8a963ba, type: 2}
+  - {fileID: 11400000, guid: 831079d8f5c184a499c4d1dc873b2ac4, type: 2}
+  - {fileID: 11400000, guid: 466a4134170cfd847b36624c9b295f08, type: 2}
+  - {fileID: 11400000, guid: f1d8cf96fe0a1f940b95c0d7728ae953, type: 2}
+  - {fileID: 11400000, guid: ca9b80a9b506d734590dffbec91c6a82, type: 2}
+  retryAttempts: 10
+  autoGenerateOnStart: 1
+  showDebugGizmos: 1
+  showDoorVisuals: 1
+  showGridLayout: 1
+  gridColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.3}
 --- !u!4 &1923445573
 Transform:
   m_ObjectHideFlags: 0
